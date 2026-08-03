@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — CompanionRank</title>
+<meta name="description" content="About">
+<link rel="canonical" href="https://example.com/about.html">
+<meta property="og:title" content="About — CompanionRank">
+<meta property="og:description" content="About">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+:root{--bg:#0B1120;--bg-raised:#131B2E;--text:#F5F3FF;--text-muted:#94A3B8;--accent:#C4B5FD;--accent-dim:#8B7CD6;--border:#1E293B;--radius:10px;}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;margin:0;line-height:1.6;}
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--accent);text-decoration:none;cursor:pointer;}
+.container{max-width:1080px;margin:0 auto;padding:0 24px;}
+.card{background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
+.btn{display:inline-block;background:var(--accent);color:#0B1120;font-weight:600;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;}
+.btn:hover{background:var(--accent-dim);}
+.meter{height:6px;border-radius:4px;background:var(--border);overflow:hidden;}
+.meter-fill{height:100%;background:var(--accent);}
+.meter-row{display:grid;grid-template-columns:80px 1fr 32px;align-items:center;gap:10px;margin-bottom:8px;}
+.meter-label{font-size:13px;color:var(--text-muted);}
+.meter-value{font-size:13px;color:var(--text-muted);text-align:right;}
+header{border-bottom:1px solid var(--border);padding:20px 0;}
+header .container{display:flex;justify-content:space-between;align-items:center;}
+nav{display:flex;gap:24px;flex-wrap:wrap;}
+.rank-number{font-size:28px;color:var(--accent);}
+.rank-row{display:grid;grid-template-columns:40px 1fr;gap:16px;}
+footer{border-top:1px solid var(--border);padding:32px 0;color:var(--text-muted);font-size:13px;text-align:center;}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.grid4{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:640px){.pros-cons,.grid4{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header><div class="container">
+  <a class="logo display" href="/" style="font-size:20px">CompanionRank</a>
+  <nav><a href="/">Home</a><a href="/nsfw.html">18+</a><a href="/sfw.html">SFW Companions</a><a href="/blog.html">Guides</a></nav>
+</div></header>
+
+<main class="container" style="padding:48px 24px;max-width:720px">
+  <h1 class="display">About</h1>
+  <p style="color:var(--text-muted)">CompanionRank reviews and ranks AI companion apps and AI tools based on privacy practices, feature depth, and pricing value.</p>
+</main>
+<footer><div class="container">
+  <p>&copy; 2026 CompanionRank &middot; <a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/disclosure.html">Affiliate Disclosure</a></p>
+</div></footer>
+</body></html>
