@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://companionrank.best/sitemap.xml
+Sitemap: https://comparisonrank.best/sitemap.xml
