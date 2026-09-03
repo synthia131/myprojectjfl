@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CompanionRank — Listing Generator (Local Tool)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+:root{
+  --paper:#EDEEE6;--paper-raised:#E3E5DA;--ink:#1C1E18;--ink-soft:#454A3D;
+  --rule:#C7C9BC;--signal:#1F5C56;--signal-soft:#DDE6E2;--brass:#9C7A21;--brass-soft:#F3ECD8;
+  --accent:#B23A52;--accent-soft:#F4DEE3;
+}
+*{box-sizing:border-box;}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.6 'Public Sans',system-ui,sans-serif;margin:0;}
+h1,h2,h3{font-family:'Bitter',Georgia,serif;font-weight:700;margin:0;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.wrap{max-width:1100px;margin:0 auto;padding:32px 24px 80px;}
+.top-bar{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:24px;}
+.top-bar h1{font-size:24px;}
+.top-bar p{color:var(--ink-soft);margin-top:6px;font-size:14px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+@media(max-width:860px){.grid{grid-template-columns:1fr;}}
+.panel{background:var(--paper-raised);border:1px solid var(--rule);padding:22px;}
+.panel h2{font-size:15px;font-family:'IBM Plex Mono',monospace;letter-spacing:.02em;margin-bottom:16px;text-transform:uppercase;color:var(--ink-soft);}
+label{display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin:14px 0 4px;}
+label:first-of-type{margin-top:0;}
+input[type=text],input[type=number],input[type=url],select,textarea{
+  width:100%;padding:9px 10px;border:1px solid var(--rule);background:var(--paper);
+  font:400 14px 'Public Sans',sans-serif;color:var(--ink);
+}
+textarea{resize:vertical;min-height:56px;}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.chk{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:13px;}
+.chk input{width:auto;}
+button{font-family:'IBM Plex Mono',monospace;font-size:13px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:10px 18px;cursor:pointer;margin-top:18px;margin-right:8px;}
+button.secondary{background:transparent;color:var(--ink);}
+button:hover{opacity:.85;}
+.output-box{background:var(--ink);color:#D9DBCF;padding:16px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow:auto;margin-top:12px;border:1px solid var(--rule);}
+.copy-msg{color:var(--signal);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:8px;height:16px;}
+.preview-label{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin:22px 0 8px;text-transform:uppercase;}
+/* --- live preview styles matching site --- */
+.row{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--rule);}
+.rank-cell{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--ink-soft);border:1px solid var(--rule);text-align:center;padding:6px 0;height:fit-content;}
+.rank-cell.brass{color:var(--brass);border-color:var(--brass);font-weight:600;}
+.row h3{font-size:19px;margin-bottom:4px;}
+.row-desc{color:var(--ink-soft);font-size:15px;margin:0 0 12px;max-width:62ch;}
+.row-price{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);margin:0 0 12px;}
+.meters{display:flex;flex-wrap:wrap;gap:18px 28px;margin-bottom:14px;}
+.meter-item{display:flex;align-items:center;gap:8px;}
+.meter-item .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);width:62px;}
+.meter{width:80px;height:4px;background:var(--rule);position:relative;}
+.meter-fill{position:absolute;left:0;top:0;height:100%;background:var(--signal);}
+.meter-item .val{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);width:20px;}
+.row-actions{display:flex;gap:16px;align-items:center;}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);border:1px solid var(--accent);padding:8px 16px;text-decoration:none;display:inline-block;}
+.link-quiet{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);}
+.row.top-pick{background:var(--brass-soft);border-top:none;padding:24px 20px;border:1px solid var(--brass);}
+.row.top-pick .rank-cell.brass{background:var(--brass);color:var(--paper);}
+.row.top-pick .btn{background:var(--brass);border-color:var(--brass);color:var(--paper);}
+.pick-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--brass);text-transform:uppercase;margin-bottom:6px;display:block;}
+.saved-list{margin-top:26px;}
+.saved-item{border:1px solid var(--rule);padding:12px 14px;margin-bottom:8px;background:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.saved-item .meta{font-size:13px;}
+.saved-item .meta b{font-family:'Bitter',serif;}
+.saved-item .actions button{margin:0 0 0 6px;padding:6px 10px;font-size:11px;}
+.note{font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <h1>CompanionRank — Listing Generator</h1>
+    <p>Local tool, runs entirely in your browser. Nothing here is uploaded anywhere automatically — fill the form, copy the generated HTML, and paste it into the matching file in your repo. Drafts save to this browser only (localStorage), so they'll persist if you close the tab, but only on this device.</p>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>New / Edit Listing</h2>
+
+      <label>Target page</label>
+      <select id="targetPage">
+        <option value="ai-girlfriend.html">ai-girlfriend.html</option>
+        <option value="live-cams.html">live-cams.html</option>
+        <option value="sfw.html">sfw.html</option>
+        <option value="image-generators.html">image-generators.html</option>
+        <option value="writing-assistants.html">writing-assistants.html</option>
+        <option value="video-generators.html">video-generators.html</option>
+        <option value="coding-assistants.html">coding-assistants.html</option>
+      </select>
+
+      <div class="row-3">
+        <div><label>Rank #</label><input type="number" id="rank" value="1" min="1"></div>
+        <div><label>Top pick?</label>
+          <div class="chk" style="margin-top:9px"><input type="checkbox" id="isTop"><span>Yes, brass-highlight this row</span></div>
+        </div>
+      </div>
+
+      <label>Name</label>
+      <input type="text" id="name" placeholder="e.g. Nomi AI">
+
+      <label>Short description (1 sentence)</label>
+      <textarea id="desc" placeholder="What it does, in one line"></textarea>
+
+      <label>Price text</label>
+      <input type="text" id="price" placeholder="e.g. Free tier + Pro from $5.99/mo">
+
+      <div class="row-3">
+        <div><label>Privacy %</label><input type="number" id="privacy" min="0" max="100" value="60"></div>
+        <div><label>Features %</label><input type="number" id="features" min="0" max="100" value="75"></div>
+        <div><label>Value %</label><input type="number" id="value" min="0" max="100" value="70"></div>
+      </div>
+
+      <label>Affiliate / product URL</label>
+      <input type="url" id="url" placeholder="https://example.com/?ref=your-id">
+
+      <label>Full review page (optional — leave blank if none)</label>
+      <input type="text" id="reviewSlug" placeholder="e.g. /nomi-ai.html">
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button onclick="addOrUpdate()">Save to Draft List</button>
+        <button class="secondary" onclick="clearForm()">Clear Form</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Live Preview</h2>
+      <div id="previewMount"></div>
+      <div class="preview-label">Generated HTML (for this one listing)</div>
+      <div class="output-box" id="singleOutput"></div>
+      <button onclick="copyText('singleOutput')">Copy This Block</button>
+      <div class="copy-msg" id="copyMsg1"></div>
+    </div>
+  </div>
+
+  <div class="panel saved-list">
+    <h2>Draft List — <span id="pageLabel"></span></h2>
+    <p class="note">Everything you've saved for the currently selected target page, in rank order. Generate the full block once you've added all listings for that page, then paste it in one go — replacing the section it belongs to (girlfriend section or cams section on split pages, or the whole listing area on single-topic pages).</p>
+    <div id="savedListMount"></div>
+    <button onclick="generateAll()">Generate Full Block for This Page</button>
+    <button class="secondary" onclick="clearAllForPage()">Clear All Drafts for This Page</button>
+    <div class="output-box" id="allOutput" style="display:none"></div>
+    <button id="copyAllBtn" style="display:none" onclick="copyText('allOutput')">Copy Full Block</button>
+    <div class="copy-msg" id="copyMsg2"></div>
+  </div>
+</div>
+
+<script>
+const STORE_KEY = 'cr_admin_drafts_v1';
+function loadStore(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }catch(e){ return {}; } }
+function saveStore(s){ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }
+let editingId = null;
+
+function currentPage(){ return document.getElementById('targetPage').value; }
+
+function readForm(){
+  return {
+    id: editingId || ('l' + Date.now()),
+    rank: parseInt(document.getElementById('rank').value) || 1,
+    isTop: document.getElementById('isTop').checked,
+    name: document.getElementById('name').value.trim(),
+    desc: document.getElementById('desc').value.trim(),
+    price: document.getElementById('price').value.trim(),
+    privacy: parseInt(document.getElementById('privacy').value) || 0,
+    features: parseInt(document.getElementById('features').value) || 0,
+    value: parseInt(document.getElementById('value').value) || 0,
+    url: document.getElementById('url').value.trim(),
+    reviewSlug: document.getElementById('reviewSlug').value.trim()
+  };
+}
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function buildBlock(l){
+  const rankClass = l.isTop ? 'rank-cell brass' : 'rank-cell';
+  const rowClass = l.isTop ? 'row top-pick' : 'row';
+  const pickTag = l.isTop ? '\n    <span class="pick-tag">Top Pick</span>' : '';
+  const reviewLink = l.reviewSlug ? `<a class="link-quiet" href="${escapeHtml(l.reviewSlug)}">Full review</a>\n      ` : '';
+  return `<div class="${rowClass}">
+  <div class="${rankClass}">${l.rank}</div>
+  <div>${pickTag}
+    <h3>${escapeHtml(l.name)}</h3>
+    <p class="row-desc">${escapeHtml(l.desc)}</p>
+    <p class="row-price mono">${escapeHtml(l.price)}</p>
+    <div class="meters"><div class="meter-item"><span class="lbl">Privacy</span><div class="meter"><div class="meter-fill" style="width:${l.privacy}%"></div></div><span class="val">${l.privacy}</span></div><div class="meter-item"><span class="lbl">Features</span><div class="meter"><div class="meter-fill" style="width:${l.features}%"></div></div><span class="val">${l.features}</span></div><div class="meter-item"><span class="lbl">Value</span><div class="meter"><div class="meter-fill" style="width:${l.value}%"></div></div><span class="val">${l.value}</span></div></div>
+    <div class="row-actions">
+      ${reviewLink}<a class="btn" href="${escapeHtml(l.url)}" target="_blank" rel="noopener sponsored">Visit ${escapeHtml(l.name)}</a>
+    </div>
+  </div>
+</div>`;
+}
+
+function renderPreview(l){
+  document.getElementById('previewMount').innerHTML = buildBlock(l);
+  document.getElementById('singleOutput').textContent = buildBlock(l);
+}
+
+function addOrUpdate(){
+  const l = readForm();
+  if(!l.name){ alert('Give it a name first.'); return; }
+  const store = loadStore();
+  const page = currentPage();
+  if(!store[page]) store[page] = [];
+  const idx = store[page].findIndex(x => x.id === l.id);
+  if(idx >= 0) store[page][idx] = l; else store[page].push(l);
+  store[page].sort((a,b) => a.rank - b.rank);
+  saveStore(store);
+  editingId = null;
+  renderSavedList();
+  renderPreview(l);
+}
+
+function clearForm(){
+  document.getElementById('rank').value = 1;
+  document.getElementById('isTop').checked = false;
+  document.getElementById('name').value = '';
+  document.getElementById('desc').value = '';
+  document.getElementById('price').value = '';
+  document.getElementById('privacy').value = 60;
+  document.getElementById('features').value = 75;
+  document.getElementById('value').value = 70;
+  document.getElementById('url').value = '';
+  document.getElementById('reviewSlug').value = '';
+  editingId = null;
+}
+
+function editEntry(page, id){
+  const store = loadStore();
+  const l = (store[page]||[]).find(x => x.id === id);
+  if(!l) return;
+  editingId = id;
+  document.getElementById('rank').value = l.rank;
+  document.getElementById('isTop').checked = l.isTop;
+  document.getElementById('name').value = l.name;
+  document.getElementById('desc').value = l.desc;
+  document.getElementById('price').value = l.price;
+  document.getElementById('privacy').value = l.privacy;
+  document.getElementById('features').value = l.features;
+  document.getElementById('value').value = l.value;
+  document.getElementById('url').value = l.url;
+  document.getElementById('reviewSlug').value = l.reviewSlug;
+  renderPreview(l);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function deleteEntry(page, id){
+  const store = loadStore();
+  store[page] = (store[page]||[]).filter(x => x.id !== id);
+  saveStore(store);
+  renderSavedList();
+}
+
+function renderSavedList(){
+  const page = currentPage();
+  document.getElementById('pageLabel').textContent = page;
+  const store = loadStore();
+  const list = store[page] || [];
+  const mount = document.getElementById('savedListMount');
+  if(list.length === 0){
+    mount.innerHTML = '<p class="note">No drafts saved yet for this page.</p>';
+    document.getElementById('allOutput').style.display = 'none';
+    document.getElementById('copyAllBtn').style.display = 'none';
+    return;
+  }
+  mount.innerHTML = list.map(l => `
+    <div class="saved-item">
+      <div class="meta"><span class="mono">#${l.rank}</span> &nbsp; <b>${escapeHtml(l.name)}</b>${l.isTop ? ' &nbsp; <span class="mono" style="color:var(--brass)">TOP PICK</span>' : ''}</div>
+      <div class="actions">
+        <button class="secondary" onclick="editEntry('${page}','${l.id}')">Edit</button>
+        <button class="secondary" onclick="deleteEntry('${page}','${l.id}')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function generateAll(){
+  const page = currentPage();
+  const store = loadStore();
+  const list = (store[page] || []).slice().sort((a,b) => a.rank - b.rank);
+  const full = list.map(buildBlock).join('\n');
+  const box = document.getElementById('allOutput');
+  box.textContent = full;
+  box.style.display = 'block';
+  document.getElementById('copyAllBtn').style.display = 'inline-block';
+}
+
+function clearAllForPage(){
+  if(!confirm('Clear all drafts for this page? This cannot be undone.')) return;
+  const store = loadStore();
+  const page = currentPage();
+  delete store[page];
+  saveStore(store);
+  renderSavedList();
+  document.getElementById('allOutput').style.display = 'none';
+  document.getElementById('copyAllBtn').style.display = 'none';
+}
+
+function copyText(elId){
+  const text = document.getElementById(elId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const msgId = elId === 'singleOutput' ? 'copyMsg1' : 'copyMsg2';
+    const msg = document.getElementById(msgId);
+    msg.textContent = 'Copied to clipboard.';
+    setTimeout(() => msg.textContent = '', 2000);
+  });
+}
+
+document.getElementById('targetPage').addEventListener('change', () => { renderSavedList(); clearForm(); document.getElementById('previewMount').innerHTML=''; document.getElementById('singleOutput').textContent=''; });
+['rank','isTop','name','desc','price','privacy','features','value','url','reviewSlug'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => renderPreview(readForm()));
+});
+
+renderSavedList();
+</script>
+</body>
+</html>
