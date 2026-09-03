@@ -29,6 +29,8 @@
   --signal-soft:#DDE6E2;
   --brass:#9C7A21;
   --brass-soft:#F3ECD8;
+  --accent:#B23A52;
+  --accent-soft:#F4DEE3;
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
@@ -109,6 +111,16 @@ nav a{white-space:nowrap;}
 .nav-more summary{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);cursor:pointer;list-style:none;}
 .nav-more summary::-webkit-details-marker{display:none;}
 @media(max-width:760px){nav{gap:13px;}}
+
+header{border-bottom:1px solid var(--ink);}
+header::before{content:"";display:block;height:4px;background:var(--accent);}
+.section-label{position:relative;padding-left:14px;}
+.section-label::before{content:"";position:absolute;left:0;top:26px;width:6px;height:6px;background:var(--accent);}
+.btn{border-color:var(--accent);color:var(--accent);}
+.btn:hover{background:var(--accent);color:var(--paper);border-color:var(--accent);}
+.row.top-pick .btn{background:var(--brass);border-color:var(--brass);color:var(--paper);}
+.row.top-pick .btn:hover{background:var(--ink);border-color:var(--ink);}
+.hero-kicker{color:var(--accent);}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1H6X3CPKT"></script>
@@ -123,18 +135,20 @@ nav a{white-space:nowrap;}
 <body>
 <header><div class="container">
   <a class="logo" href="/">CompanionRank</a>
-  <nav><a href="/" class="active">Home</a><a href="/nsfw.html">18+</a><a href="/sfw.html">SFW</a><a href="/image-generators.html">Images</a><a href="/writing-assistants.html">Writing</a><a href="/video-generators.html">Video</a><a href="/coding-assistants.html">Coding</a><a href="/blog.html">Guides</a></nav>
+  <nav><a href="/" class="active">Home</a><a href="/ai-girlfriend.html">AI Girlfriend</a><a href="/live-cams.html">Live Cams</a><a href="/sfw.html">SFW</a><a href="/image-generators.html">Images</a><a href="/writing-assistants.html">Writing</a><a href="/video-generators.html">Video</a><a href="/coding-assistants.html">Coding</a><a href="/blog.html">Guides</a></nav>
 </div></header>
 <main class="container" style="padding:40px 0 60px">
-<h1 class="display" style="font-size:34px;max-width:16ch">What are you comparing today?</h1>
-<p style="color:var(--ink-soft);max-width:58ch;margin-top:10px">Independent rankings across AI companion apps and AI tools — tested the same way every time: privacy, features, value.</p>
+<span class="hero-kicker mono">INDEPENDENT & UNBIASED</span>
+<h1 class="display" style="font-size:34px;max-width:18ch">What are you comparing today?</h1>
+<p style="color:var(--ink-soft);max-width:58ch;margin-top:10px">Independent rankings across AI girlfriend apps, live cams, and AI tools — tested the same way every time: privacy, features, value.</p>
 <div style="margin-top:8px">
-<a class="dir-row" href="/nsfw.html"><div class="dir-num mono">01</div><div><h2>18+ Companions</h2><p>Adult-oriented AI companion apps with mature roleplay and content.</p></div></a>
-<a class="dir-row" href="/sfw.html"><div class="dir-num mono">02</div><div><h2>All-Ages Companions</h2><p>Anime, roleplay, and emotional-support chat — no explicit content.</p></div></a>
-<a class="dir-row" href="/image-generators.html"><div class="dir-num mono">03</div><div><h2>AI Image Generators</h2><p>Midjourney, DALL·E, Stable Diffusion compared.</p></div></a>
-<a class="dir-row" href="/writing-assistants.html"><div class="dir-num mono">04</div><div><h2>AI Writing Assistants</h2><p>Jasper, Grammarly, Copy.ai compared.</p></div></a>
-<a class="dir-row" href="/video-generators.html"><div class="dir-num mono">05</div><div><h2>AI Video Generators</h2><p>Runway, Pika, Synthesia compared.</p></div></a>
-<a class="dir-row" href="/coding-assistants.html"><div class="dir-num mono">06</div><div><h2>AI Coding Assistants</h2><p>GitHub Copilot, Cursor, Claude Code compared.</p></div></a>
+<a class="dir-row" href="/ai-girlfriend.html"><div class="dir-num mono">01</div><div><h2>AI Girlfriend Apps</h2><p>18+ chat-based AI girlfriends with memory, personas, and roleplay.</p></div></a>
+<a class="dir-row" href="/live-cams.html"><div class="dir-num mono">02</div><div><h2>Live Cams & AI Matching</h2><p>18+ platforms blending AI matching with live, real-performer interaction.</p></div></a>
+<a class="dir-row" href="/sfw.html"><div class="dir-num mono">03</div><div><h2>All-Ages Companions</h2><p>Anime, roleplay, and emotional-support chat — no explicit content.</p></div></a>
+<a class="dir-row" href="/image-generators.html"><div class="dir-num mono">04</div><div><h2>AI Image Generators</h2><p>Midjourney, DALL·E, Stable Diffusion compared.</p></div></a>
+<a class="dir-row" href="/writing-assistants.html"><div class="dir-num mono">05</div><div><h2>AI Writing Assistants</h2><p>Jasper, Grammarly, Copy.ai compared.</p></div></a>
+<a class="dir-row" href="/video-generators.html"><div class="dir-num mono">06</div><div><h2>AI Video Generators</h2><p>Runway, Pika, Synthesia compared.</p></div></a>
+<a class="dir-row" href="/coding-assistants.html"><div class="dir-num mono">07</div><div><h2>AI Coding Assistants</h2><p>GitHub Copilot, Cursor, Claude Code compared.</p></div></a>
 </div>
 </main>
 <footer><div class="container">

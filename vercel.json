@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/nsfw.html", "destination": "/ai-girlfriend.html", "permanent": true }
+  ]
+}
