@@ -23,11 +23,12 @@
   --paper:#EDEEE6;
   --paper-raised:#E3E5DA;
   --ink:#1C1E18;
-  --ink-soft:#5B5F52;
+  --ink-soft:#454A3D;
   --rule:#C7C9BC;
   --signal:#1F5C56;
   --signal-soft:#DDE6E2;
   --brass:#9C7A21;
+  --brass-soft:#F3ECD8;
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
@@ -96,6 +97,18 @@ footer a:hover{color:var(--signal);}
 .prose p{max-width:64ch;color:var(--ink-soft);}
 @media(max-width:600px){.row,.dir-row{grid-template-columns:36px 1fr;gap:12px;}.two-col{grid-template-columns:1fr;}.two-col>div:first-child{border-right:none;border-bottom:1px solid var(--rule);}nav{gap:14px;}.logo{font-size:17px;}}
 @media(prefers-reduced-motion:reduce){*{transition:none !important;}}
+
+.row.top-pick{background:var(--brass-soft);border-top:none;margin-top:22px;padding:24px 20px;border:1px solid var(--brass);}
+.row.top-pick:first-of-type{margin-top:0;}
+.row.top-pick .rank-cell.brass{background:var(--brass);color:var(--paper);}
+.row.top-pick .btn{background:var(--brass);border-color:var(--brass);color:var(--paper);}
+.row.top-pick .btn:hover{background:var(--ink);border-color:var(--ink);}
+.pick-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--brass);text-transform:uppercase;margin-bottom:6px;display:block;}
+nav{gap:18px;}
+nav a{white-space:nowrap;}
+.nav-more summary{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);cursor:pointer;list-style:none;}
+.nav-more summary::-webkit-details-marker{display:none;}
+@media(max-width:760px){nav{gap:13px;}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1H6X3CPKT"></script>
@@ -110,7 +123,7 @@ footer a:hover{color:var(--signal);}
 <body>
 <header><div class="container">
   <a class="logo" href="/">CompanionRank</a>
-  <nav><a href="/">Home</a><a href="/nsfw.html">18+</a><a href="/sfw.html">SFW Companions</a><a href="/blog.html">Guides</a></nav>
+  <nav><a href="/">Home</a><a href="/nsfw.html">18+</a><a href="/sfw.html">SFW</a><a href="/image-generators.html">Images</a><a href="/writing-assistants.html">Writing</a><a href="/video-generators.html">Video</a><a href="/coding-assistants.html">Coding</a><a href="/blog.html">Guides</a></nav>
 </div></header>
 <main class="container prose" style="padding:40px 0 60px;max-width:680px">
 <h1 class="display" style="font-size:30px">Privacy Policy</h1>

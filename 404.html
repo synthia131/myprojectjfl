@@ -13,6 +13,18 @@ body{background:#EDEEE6;color:#1C1E18;font-family:'IBM Plex Mono',monospace;disp
 h1{font-family:'Bitter',serif;font-size:64px;margin:0 0 8px;color:#9C7A21;}
 p{color:#5B5F52;margin:0 0 24px;}
 a{color:#1F5C56;border-bottom:1px solid #1F5C56;text-decoration:none;}
+
+.row.top-pick{background:var(--brass-soft);border-top:none;margin-top:22px;padding:24px 20px;border:1px solid var(--brass);}
+.row.top-pick:first-of-type{margin-top:0;}
+.row.top-pick .rank-cell.brass{background:var(--brass);color:var(--paper);}
+.row.top-pick .btn{background:var(--brass);border-color:var(--brass);color:var(--paper);}
+.row.top-pick .btn:hover{background:var(--ink);border-color:var(--ink);}
+.pick-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--brass);text-transform:uppercase;margin-bottom:6px;display:block;}
+nav{gap:18px;}
+nav a{white-space:nowrap;}
+.nav-more summary{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);cursor:pointer;list-style:none;}
+.nav-more summary::-webkit-details-marker{display:none;}
+@media(max-width:760px){nav{gap:13px;}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1H6X3CPKT"></script>

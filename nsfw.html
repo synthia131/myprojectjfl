@@ -23,11 +23,12 @@
   --paper:#EDEEE6;
   --paper-raised:#E3E5DA;
   --ink:#1C1E18;
-  --ink-soft:#5B5F52;
+  --ink-soft:#454A3D;
   --rule:#C7C9BC;
   --signal:#1F5C56;
   --signal-soft:#DDE6E2;
   --brass:#9C7A21;
+  --brass-soft:#F3ECD8;
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;}
@@ -96,6 +97,18 @@ footer a:hover{color:var(--signal);}
 .prose p{max-width:64ch;color:var(--ink-soft);}
 @media(max-width:600px){.row,.dir-row{grid-template-columns:36px 1fr;gap:12px;}.two-col{grid-template-columns:1fr;}.two-col>div:first-child{border-right:none;border-bottom:1px solid var(--rule);}nav{gap:14px;}.logo{font-size:17px;}}
 @media(prefers-reduced-motion:reduce){*{transition:none !important;}}
+
+.row.top-pick{background:var(--brass-soft);border-top:none;margin-top:22px;padding:24px 20px;border:1px solid var(--brass);}
+.row.top-pick:first-of-type{margin-top:0;}
+.row.top-pick .rank-cell.brass{background:var(--brass);color:var(--paper);}
+.row.top-pick .btn{background:var(--brass);border-color:var(--brass);color:var(--paper);}
+.row.top-pick .btn:hover{background:var(--ink);border-color:var(--ink);}
+.pick-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--brass);text-transform:uppercase;margin-bottom:6px;display:block;}
+nav{gap:18px;}
+nav a{white-space:nowrap;}
+.nav-more summary{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);cursor:pointer;list-style:none;}
+.nav-more summary::-webkit-details-marker{display:none;}
+@media(max-width:760px){nav{gap:13px;}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1H6X3CPKT"></script>
@@ -110,17 +123,17 @@ footer a:hover{color:var(--signal);}
 <body>
 <header><div class="container">
   <a class="logo" href="/">CompanionRank</a>
-  <nav><a href="/">Home</a><a href="/nsfw.html" class="active">18+</a><a href="/sfw.html">SFW Companions</a><a href="/blog.html">Guides</a></nav>
+  <nav><a href="/">Home</a><a href="/nsfw.html" class="active">18+</a><a href="/sfw.html">SFW</a><a href="/image-generators.html">Images</a><a href="/writing-assistants.html">Writing</a><a href="/video-generators.html">Video</a><a href="/coding-assistants.html">Coding</a><a href="/blog.html">Guides</a></nav>
 </div></header>
 <main class="container" style="padding:40px 0 60px">
 <h1 class="display" style="font-size:32px">18+ AI Companion Apps</h1>
 <p style="color:var(--ink-soft);max-width:60ch;margin-top:10px">Ranked on privacy practices, feature depth, and price-to-value.</p>
 <div class="section-label">AI Girlfriend & Companion Chat Apps<span class="count">11 listed</span></div>
 <p style="color:var(--ink-soft);margin:0 0 4px;max-width:60ch">Chat-based AI companions — persistent characters, memory, and roleplay conversation.</p>
-<div class="row">
+<div class="row top-pick">
   <div class="rank-cell brass">1</div>
   <div>
-    <h3>Xchar AI</h3>
+    <span class="pick-tag">Top Pick</span><h3>Xchar AI</h3>
     <p class="row-desc">Customizable AI companion platform with chat, image, and video generation for fully custom characters</p>
     <p class="row-price mono">Free tier + Premium $14.95/mo</p>
     <div class="meters"><div class="meter-item"><span class="lbl">Privacy</span><div class="meter"><div class="meter-fill" style="width:60%"></div></div><span class="val">60</span></div><div class="meter-item"><span class="lbl">Features</span><div class="meter"><div class="meter-fill" style="width:85%"></div></div><span class="val">85</span></div><div class="meter-item"><span class="lbl">Value</span><div class="meter"><div class="meter-fill" style="width:75%"></div></div><span class="val">75</span></div></div>
@@ -262,10 +275,10 @@ footer a:hover{color:var(--signal);}
 </div>
 <div class="section-label">Live Cam & Interactive AI<span class="count">2 listed</span></div>
 <p style="color:var(--ink-soft);margin:0 0 4px;max-width:60ch">Platforms blending AI matching or AI personas with live, real-performer interaction.</p>
-<div class="row">
+<div class="row top-pick">
   <div class="rank-cell brass">1</div>
   <div>
-    <h3>FlirtCam.ai</h3>
+    <span class="pick-tag">Top Pick</span><h3>FlirtCam.ai</h3>
     <p class="row-desc">AI companion platform blending chat personas with live-style cam interactions</p>
     <p class="row-price mono">Free tier + paid plans</p>
     <div class="meters"><div class="meter-item"><span class="lbl">Privacy</span><div class="meter"><div class="meter-fill" style="width:52%"></div></div><span class="val">52</span></div><div class="meter-item"><span class="lbl">Features</span><div class="meter"><div class="meter-fill" style="width:75%"></div></div><span class="val">75</span></div><div class="meter-item"><span class="lbl">Value</span><div class="meter"><div class="meter-fill" style="width:70%"></div></div><span class="val">70</span></div></div>
