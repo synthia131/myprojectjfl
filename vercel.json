@@ -1,5 +1,8 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/nsfw.html", "destination": "/ai-girlfriend.html", "permanent": true }
+    { "source": "/nsfw.html", "destination": "/ai-girlfriend", "permanent": true },
+    { "source": "/nsfw", "destination": "/ai-girlfriend", "permanent": true }
   ]
 }
